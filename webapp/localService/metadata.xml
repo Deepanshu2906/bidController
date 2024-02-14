@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="NAUTI.CONTROLLER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="BidData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ImChat"/>
+                </Key>
+                <Property Name="ImChat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrnmin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Voyno" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Voyage No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Eligible" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Eligibility" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CRank" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Commercial Rank" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TRank" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Technical Rank" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Bids" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Chrnmin"/>
+                </Key>
+                <Property Name="Biddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Bid Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bidtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Bid Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrnmin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrqsdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Bidding Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrqstime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Bidding Start Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrqedate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Bidding End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrqetime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Bidding End Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stat" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zmode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Type (Auto/manual)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="InvBid" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lifnr"/>
+                    <PropertyRef Name="Chrnmin"/>
+                </Key>
+                <Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Chrnmin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cvalue" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:label="Revaluation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cunit" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityType Name="OriginalBids" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lifnr"/>
+                </Key>
+                <Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cvalue" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:label="Revaluation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cunit" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Chrnmin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SetQuote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IvChat"/>
+                    <PropertyRef Name="IvQuote"/>
+                </Key>
+                <Property Name="IvChat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvQuote" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:label="Revaluation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvStart" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EvMsg" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="LiveRank" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IvChrnmin"/>
+                    <PropertyRef Name="IvLifnr"/>
+                    <PropertyRef Name="IvVoyno"/>
+                </Key>
+                <Property Name="IvChrnmin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvLifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvVoyno" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Voyage No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvRank" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="3-Byte field" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GetQuote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IvChat"/>
+                </Key>
+                <Property Name="IvChat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Chartering Req. No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IvVend" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EvQuote" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EvUnit" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityContainer Name="NAUTI_CONTROLLER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="BidDataSet" EntityType="NAUTI.CONTROLLER_SRV.BidData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BidsSet" EntityType="NAUTI.CONTROLLER_SRV.Bids" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InvBidSet" EntityType="NAUTI.CONTROLLER_SRV.InvBid" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OriginalBidsSet" EntityType="NAUTI.CONTROLLER_SRV.OriginalBids" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SetQuoteSet" EntityType="NAUTI.CONTROLLER_SRV.SetQuote" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="LiveRankSet" EntityType="NAUTI.CONTROLLER_SRV.LiveRank" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GetQuoteSet" EntityType="NAUTI.CONTROLLER_SRV.GetQuote" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://35.185.33.183:8001/sap/opu/odata/nauti/CONTROLLER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://35.185.33.183:8001/sap/opu/odata/nauti/CONTROLLER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,241 @@
+<mvc:View controllerName="com.nauti.controllerportal.controller.Main"
+xmlns:layout="sap.ui.layout"
+xmlns:mvc="sap.ui.core.mvc"
+displayBlock="true"
+xmlns="sap.m">
+    <Page
+    id="page"
+    title="{i18n>title}"
+>
+    <content>
+        <FlexBox
+            alignContent="Center"
+            justifyContent="SpaceBetween"
+            alignItems="Center"
+        >
+            <items>
+                <VBox
+                    width="100%"
+                    class="sapUiNoMargin"
+                >
+                    <HBox
+                        width="100%"
+                        justifyContent="Center"
+                    >
+                        <GenericTile
+                            class="sapUiTinyMarginTop"
+                            header="Open"
+                            subheader="Bids"
+                            press="pressOpen"
+                            frameType="Auto"
+                        >
+                            <!-- <TileContent footer="Chartering Requests"> -->
+                            <TileContent>
+                                <NumericContent
+                                    id="openBids"
+                                    valueColor="Critical"
+                                    value="{bidtilemodel>/Open}"
+                                    icon="sap-icon://open-folder"
+                                    withMargin="false"
+                                />
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            class="sapUiLargeMarginBegin sapUiTinyMarginTop"
+                            header="Closed"
+                            subheader="Bids"
+                            press="pressClosed"
+                            frameType="Auto"
+                        >
+                            <!-- <TileContent footer="Chartering Requests"> -->
+                            <TileContent>
+                                <NumericContent
+                                    id="closedBids"
+                                    valueColor="Good"
+                                    value="{bidtilemodel>/Closed}"
+                                    icon="sap-icon://folder-full"
+                                    withMargin="false"
+                                />
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            class="sapUiLargeMarginBegin sapUiTinyMarginTop"
+                            header="Ongoing"
+                            subheader="Bids"
+                            press="pressOngoing"
+                            frameType="Auto"
+                        >
+                            <!-- <TileContent footer="Chartering Requests"> -->
+                            <TileContent>
+                                <NumericContent
+                                    id="ongoingBids"
+                                    valueColor="Critical"
+                                    value="{bidtilemodel>/Ongoing}"
+                                    icon="sap-icon://pending"
+                                    withMargin="false"
+                                />
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile
+                            class="sapUiLargeMarginBegin sapUiTinyMarginTop"
+                            header="All"
+                            subheader="Bids"
+                            press="pressAll"
+                            frameType="Auto"
+                        >
+                            <TileContent>
+                                <NumericContent
+                                    id="allBids"
+                                    valueColor="Neutral"
+                                    value="{bidtilemodel>/All}"
+                                    icon="sap-icon://browse-folder"
+                                    withMargin="false"
+                                />
+                            </TileContent>
+                        </GenericTile>
+                    </HBox>
+                </VBox>
+            </items>
+        </FlexBox>
+        <layout:BlockLayout background="Dashboard">
+            <layout:BlockLayoutRow>
+                <layout:content>
+                    <layout:BlockLayoutCell>
+                        <Table
+                            id="centerDataTable"
+                            autoPopinMode="true"
+                            contextualWidth="Auto"
+                            alternateRowColors="true"
+                            inset="true"
+                            class="sapUiNoMargin"
+                            fixedLayout="true"
+                            width="auto"
+                            items="{
+                                path: 'bidlist>/bidList/',
+                                parameters: {
+                                    operationMode: 'Client'
+                                }
+                            }"
+                        >
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Ongoing Bids"/>
+                                    <ToolbarSpacer/>
+                                    <!-- <Button
+                      id="idButton"
+                      icon="sap-icon://download"
+                      text="Excel"
+                      type="Ghost"
+                      press="onExcelExport"
+                    /> -->
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Label text="Chartering Req. No."/>
+                                </Column>
+                                <!-- <Column
+                    demandPopin="true"
+                    hAlign="Left"
+                    minScreenWidth="phone"
+                  >
+                    <Label text="Voyage Number"/>
+                  </Column> -->
+                                <!-- <Column
+                    demandPopin="true"
+                    hAlign="Left"
+                    minScreenWidth="phone"
+                  >
+                    <Label text="Voyage Name"/>
+                  </Column> -->
+                                <!-- <Column
+                    minScreenWidth="phone"
+                    hAlign="Right"
+                  >
+                    <Label text="RFQ Date"/>
+                  </Column> -->
+                                <Column hAlign="Right">
+                                    <Label text="Bid Start Date"/>
+                                </Column>
+                                <Column>
+                                    <Label text="Bid Start Time"/>
+                                </Column>
+                                <Column hAlign="Right">
+                                    <Label text="Bid End Date"/>
+                                </Column>
+                                <Column>
+                                    <Label text="Bid End Time"/>
+                                </Column>
+                                <Column
+                                    demandPopin="true"
+                                    hAlign="Center"
+                                    minScreenWidth="phone"
+                                >
+                                    <Label text="Status"/>
+                                </Column>
+                                <!-- <Column
+                    demandPopin="true"
+                    minScreenWidth="tablet"
+                  >
+                    <Label text=""/>
+                  </Column>
+                  <Column
+                    demandPopin="true"
+                    minScreenWidth="tablet"
+                  >
+                    <Label text=""/>
+                  </Column> -->
+                            </columns>
+                            <items>
+                                <ColumnListItem
+                                    type="Navigation"
+                                    press="toBiddingDetail"
+                                >
+                                    <cells>
+                                        <Text text="{bidlist>Chrnmin}"/>
+                                        <!-- <Text text="{bidlist>Voyno}"/> -->
+                                        <!-- <Text text="{bidlist>Voynm}"/> -->
+                                        <!-- <Text text="{
+                        path: 'bidlist>Chrcdate',
+                        formatter: '.formatter.dateFormat'
+                      }"/> -->
+                                        <Text text="{
+                                            path: 'bidlist>Chrqsdate',
+                                            formatter: '.formatter.dateFormat'
+                                        }"/>
+                                        <Text text="{
+                                            path: 'bidlist>Chrqstime',
+                                            formatter: '.formatter.formatTime'
+                                        }"/>
+                                        <Text text="{
+                                            path: 'bidlist>Chrqedate',
+                                            formatter: '.formatter.dateFormat'
+                                        }"/>
+                                        <Text text="{
+                                            path: 'bidlist>Chrqetime',
+                                            formatter: '.formatter.formatTime'
+                                        }"/>
+                                        <!-- text="{
+                                            path: 'bidlist>status',
+                                            formatter: '.formatter.statusTextFormatter'
+                                        }" -->
+                                        <ObjectStatus
+                                            text="{bidlist>status}"
+                                            state="{
+                                                path: 'bidlist>status',
+                                                formatter: '.formatter.statusFormatter'
+                                            }"
+                                        />
+                                        <!-- <Text text=""/>
+                      <Text text=""/> -->
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:BlockLayout>
+    </content>
+</Page>
+</mvc:View>

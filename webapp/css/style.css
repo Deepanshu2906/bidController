@@ -1,0 +1,20 @@
+.alignCircle .sapSuiteRMCVerticalAlignmentContainer.sapSuiteRMCAlignCenter {
+  align-items: center;
+}
+.scaleCircle .sapSuiteRMCVerticalAlignmentContainer.sapSuiteRMCAlignCenter .sapSuiteRMCInnerContainer {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.hideCirclePercent .sapSuiteRMCVerticalAlignmentContainer.sapSuiteRMCAlignCenter .sapSuiteRMCInnerContainer .sapSuiteRMCInsideLabel.sapSuiteRMCFont.sapSuiteRMCNeutralTextColor{
+  visibility: hidden;
+}
+
+.topCommTileWidth {
+  width: 40rem !important;
+}
+
+
+.commTileContentFontSize .sapMNC .sapMNCLargeFontSize {
+  font-size: 1.25rem !important;
+}/* Enter your custom styles here */

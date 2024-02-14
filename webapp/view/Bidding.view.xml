@@ -1,0 +1,310 @@
+<mvc:View
+	xmlns:grid="sap.ui.layout.cssgrid"
+	controllerName="com.nauti.controllerportal.controller.Bidding"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:microchart="sap.suite.ui.microchart"
+>
+	<Page
+		id="page"
+		title="{i18n>title}"
+	>
+		<content>
+			<MessageStrip
+				id="startMsgStrip"
+				visible="false"
+				text="Press START to initiate bidding session."
+				type="Information"
+				class="sapUiResponsiveMargin"
+			/>
+			<grid:CSSGrid
+				id="grid1"
+				gridTemplateColumns="3fr 1fr 1fr"
+				gridGap="1rem"
+				class="sapUiSmallMarginBeginEnd"
+			>
+				<grid:items>
+					<ObjectHeader
+						backgroundDesign="Translucent"
+						fullScreenOptimized="true"
+						condensed="false"
+						icon=""
+						iconAlt=""
+						iconDensityAware="true"
+						iconTooltip=""
+						imageShape="Circle"
+						intro="Bid Information for Charter Req."
+						number=""
+						numberState="Success"
+						responsive="false"
+						title="{rankmodel>/0/ImChat}"
+						class="sapUiSmallMarginTop sapUiSmallMarginBegin addShadow"
+					>
+						<additionalNumbers>
+							<ObjectNumber
+								emphasized="true"
+								number="{rankmodel>/0/Voyno}"
+								state="None"
+								textAlign="Right"
+								textDirection="Inherit"
+								unit="Voyage"
+							/>
+							<!-- unit="{sample>/charter/vdesc}" -->
+							<ObjectNumber
+								emphasized="true"
+								number=""
+								state="None"
+								textAlign="Right"
+								textDirection="Inherit"
+								unit=""
+							/>
+						</additionalNumbers>
+						<attributes>
+							<ObjectAttribute
+								id="bidFrom"
+								title="Bid From"
+							/>
+							<ObjectAttribute
+								id="bidTo"
+								title="Bid To"
+							/>
+							<!-- <ObjectAttribute
+								title="Bid Number"
+								text="{sample>/charter/bidno}"
+								tooltip="Bidding Number: {sample>/charter/bidno}"
+							/> -->
+						</attributes>
+						<headerContainer/>
+						<markers/>
+						<statuses/>
+					</ObjectHeader>
+					<FlexBox
+						alignContent="Center"
+						alignItems="Center"
+						justifyContent="SpaceAround"
+					>
+						<GenericTile
+							id="commTile"
+							class="sapUiLargeMarginBegin sapUiSmallMarginTop topCommTileWidth"
+							header="Leading Commercial Rank (L1)"
+							subheader="Quote: "
+							press="pressOpen"
+							frameType="TwoByOne"
+						>
+							<!-- <TileContent footer="Chartering Requests"> -->
+							<TileContent
+								id="commTileContent"
+								footer="Technical Score: "
+								class="commTileContentFontSize"
+							>
+								<NumericContent
+									id="topCommTile"
+									valueColor="Good"
+									value=""
+									withMargin="false"
+									truncateValueTo="50"
+									indicator="Up"
+								/>
+							</TileContent>
+						</GenericTile>
+					</FlexBox>
+					<VBox alignItems="Center">
+						<microchart:RadialMicroChart
+							id="radialClock"
+							size="L"
+							width="250px"
+							height="250px"
+							alignContent="Center"
+							class="alignCircle scaleCircle hideCirclePercent"
+						/>
+						<Label
+							id="timeLeftCell"
+							design="Bold"
+							displayOnly="true"
+							text="Time Left - 00:00:00"
+						/>
+					</VBox>
+				</grid:items>
+			</grid:CSSGrid>
+			<FlexBox
+				alignContent="Stretch"
+				justifyContent="SpaceBetween"
+				alignItems="Center"
+			>
+				<VBox
+					width="100%"
+					class="sapUiResponsiveMargin"
+				/>
+				<HBox
+					width="100%"
+					class="sapUiResponsiveMargin"
+				>
+					<!-- <GenericTile
+						class="sapUiLargeMarginBegin sapUiSmallMarginTop"
+						header="T1 Bidder"
+						press="pressClosed"
+						frameType="TwoByOne"
+					>
+						<TileContent>
+							<NumericContent
+								id="topTechTile"
+								valueColor="Good"
+								value=""
+								withMargin="false"
+								truncateValueTo="30"
+								indicator="Up"
+							/>
+						</TileContent>
+					</GenericTile> -->
+					<!-- <GenericTile
+						class="sapUiLargeMarginBegin sapUiSmallMarginTop"
+						header="All"
+						subheader="Successful Requests"
+						press="pressAll"
+						frameType="Auto"
+					>
+						<TileContent>
+							<NumericContent
+								valueColor="Neutral"
+								value="6"
+								icon="sap-icon://browse-folder"
+								withMargin="false"
+							/>
+						</TileContent>
+					</GenericTile> -->
+				</HBox>
+			</FlexBox>
+			<Table
+				id="centerDataTable"
+				autoPopinMode="true"
+				contextualWidth="Auto"
+				alternateRowColors="true"
+				inset="true"
+				class="sapUiResponsiveMargin"
+				fixedLayout="true"
+				width="auto"
+				items="{rankmodel>/}"
+			>
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Vendor List for Charter Request - {rankmodel>/0/ImChat}"/>
+						<ToolbarSpacer/>
+						<!-- <Button
+							id="idButton"
+							icon="sap-icon://download"
+							text="Excel"
+							type="Ghost"
+							press="onExcelExport"
+							/> -->
+						<Label
+							text="Initial Bid:"
+							labelFor="currentQuote"
+						/>
+						<Input
+							width="auto"
+							id="currentQuote"
+							enabled="false"
+						/>
+						<ToolbarSpacer/>
+						<Label
+							text="Quote Price:"
+							labelFor="quoteInput"
+						/>
+						<Input
+							width="auto"
+							id="quoteInput"
+							type="Number"
+						/>
+						<Button
+							id="submitButton"
+							text="Submit"
+							type="Emphasized"
+							press="onQuoteSubmit"
+							enabled="false"
+						/>
+						<Button
+							id="startButton"
+							text="START"
+							type="Accept"
+							press="onStart"
+						/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="20rem">
+						<Label text="Vendors"/>
+					</Column>
+					<Column
+						demandPopin="true"
+						hAlign="Center"
+						minScreenWidth="phone"
+					>
+						<Label text="Technical Score"/>
+					</Column>
+					<Column
+						demandPopin="true"
+						hAlign="Center"
+						minScreenWidth="phone"
+					>
+						<Label text="Commercial Score"/>
+					</Column>
+					<Column
+						minScreenWidth="phone"
+						hAlign="Right"
+					>
+						<Label text="Original Bid"/>
+					</Column>
+					<Column hAlign="Right">
+						<Label text="Current Bid"/>
+					</Column>
+					<!-- <Column
+						demandPopin="true"
+						hAlign="Right"
+						minScreenWidth="phone"
+					>
+						<Label text="Bid Time From"/>
+					</Column>
+					<Column
+						demandPopin="true"
+						hAlign="Right"
+						minScreenWidth="phone"
+					>
+						<Label text="Bid Time To"/>
+					</Column> -->
+					<!-- <Column
+						demandPopin="true"
+						minScreenWidth="tablet"
+					>
+						<Label text=""/>
+					</Column>
+					<Column
+						demandPopin="true"
+						minScreenWidth="tablet"
+					>
+						<Label text=""/>
+					</Column> -->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text
+								text="{rankmodel>Name1} {rankmodel>Name2}"
+								maxLines="1"
+								tooltip="{rankmodel>Name1} {rankmodel>Name2} ({rankmodel>Lifnr})"
+							/>
+							<!-- <Text text="{sample>timefrom}"/>
+							<Text text="{sample>timeto}"/> -->
+							<Text text="{rankmodel>TRank}"/>
+							<Text text="{rankmodel>CRank}"/>
+							<Text text="{rankmodel>originalBid}"/>
+							<Text text="{rankmodel>currentBid}"/>
+							<!-- <Text text=""/>
+							<Text text=""/> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
